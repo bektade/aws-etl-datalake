@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+sodapy = "*"
+jupyter = "*"
+azure-storage-file-datalake = "*"
+tqdm = "*"
+numpy = "*"
+seaborn = "*"
+plotly = "*"
+folium = "*"
+geopandas = "*"
+matplotlib = "*"
+pandas = "*"
+boto3 = "*"
+python-dotenv = "*"
+dotenv = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
