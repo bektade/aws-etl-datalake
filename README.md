@@ -10,6 +10,15 @@
 | Rows                | `8.19M` |
 | Columns             | `22`    |
 
+
+### Tech stack 
+
+- Python - ingestion 
+- Airflow - workflow automation 
+- AWS S3 - storage
+- Databricks - s3 data wrangling & transformation 
+ 
+
 #### Links
 
 - [`About the Data`](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data)
