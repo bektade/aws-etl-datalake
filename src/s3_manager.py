@@ -15,7 +15,7 @@ class S3Manager:
         self.aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
         self.aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
         self.aws_region = os.getenv('AWS_REGION')
-        self.bucket_name = bucket_name
+        self.bucket_name = os.getenv('S3_BUCKET_NAME')
         
         # Validate credentials
         if not all([self.aws_access_key_id, self.aws_secret_access_key, self.aws_region]):
