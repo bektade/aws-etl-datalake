@@ -15,7 +15,7 @@ class S3Manager:
         self.aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
         self.aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
         self.aws_region = os.getenv('AWS_REGION')
-        self.bucket_name = os.getenv('S3_BUCKET_NAME')
+        self.bucket_name = os.getenv('S3_BUCKET')
 
         # Validate credentials
         if not all([self.aws_access_key_id, self.aws_secret_access_key, self.aws_region]):
@@ -73,8 +73,13 @@ class S3Manager:
             print(f"Error creating prefix: {e}")
             return False
 
-    def upload_csv(self, local_file_path, s3_key):
+    def upload2Bucket(self, local_file_path, s3_key):
         """Upload a CSV file to S3."""
+
+        # create a bucket if it does not exist
+        # same as calling  bucketCreated = s3_manager.create_bucket() ouside class
+        # bucket_created = self.create_bucket()
+
         try:
             with open(local_file_path, 'rb') as f:
                 self.s3_client.put_object(
@@ -132,7 +137,7 @@ def upload_latest_csv():
         print(f"S3 location: s3://{s3_manager.bucket_name}/{s3_key}")
 
         # Upload the file
-        return s3_manager.upload_csv(local_file_path, s3_key)
+        return s3_manager.upload2Bucket(local_file_path, s3_key)
 
     except Exception as e:
         print(f"Error: {e}")

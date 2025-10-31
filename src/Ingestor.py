@@ -137,7 +137,7 @@ class Ingestor:
 
         return df
 
-    def save_to_csv(self, df, directory='RawData/DataSet1', filename_prefix='crimes_data'):
+    def saveCSV(self, df, path='RawData/DataSet1', filePrefix='crimes_data'):
         """
 
         Save Data Locally: RawData/Dataset1
@@ -150,12 +150,12 @@ class Ingestor:
         """
 
         # Create directory if it doesn't exist
-        os.makedirs(directory, exist_ok=True)
+        os.makedirs(path, exist_ok=True)
 
         # Generate filename with timestamp
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"{filename_prefix}_{timestamp}.csv"
-        file_path = os.path.join(directory, filename)
+        filename = f"{filePrefix}_{timestamp}.csv"
+        file_path = os.path.join(path, filename)
 
         # Save to CSV
         df.to_csv(file_path, index=False)
