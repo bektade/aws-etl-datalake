@@ -4,10 +4,6 @@ import os
 
 
 def main():
-    """Simple pipeline: Ingest data from API, save to CSV, upload to S3."""
-    print("=" * 50)
-    print("CHICAGO CRIME DATA PIPELINE")
-    print("=" * 50)
 
     try:
         # Step 1: Ingest data from API and save to CSV
@@ -19,24 +15,36 @@ def main():
         # fetch from api gets a df
         df_ = ingestor.fetchApi(pastDays=10, columns=None)
 
-        # def save_to_csv(self, df, directory='RawData/DataSet1', filename_prefix='crimes_data'):
+        # save file locally
 
-        csv_file_path = ingestor.save_to_csv(
-            df_, directory='NewIngest', filename_prefix='crimes_today')
-
-        print(f"✅ Data saved to: {csv_file_path}")
+        csvPath = ingestor.saveCSV(
+            df_, path='new', filePrefix='oct')
 
         # Step 2: Upload to S3
         print("\n2. Uploading to S3...")
-        s3_manager = S3Manager()
-        filename = os.path.basename(csv_file_path)
-        s3_key = f"ingested-raw/{filename}"
 
-        if s3_manager.upload_csv(csv_file_path, s3_key):
+        # create s3 object & initalize
+        s3_manager = S3Manager()
+
+        # create s3 bucket if it doesn't exist
+        bucketCreated = s3_manager.create_bucket()
+        print(f"Bucket created: {bucketCreated}")
+
+        filename = os.path.basename(csvPath)
+
+        # PREFIX/FileName
+        s3_key = f"BRONZE/{filename}"
+
+        if s3_manager.upload2Bucket(csvPath, s3_key):
             print(f"✅ Uploaded to S3: s3://{s3_manager.bucket_name}/{s3_key}")
         else:
             print("❌ Failed to upload to S3")
             return False
+
+        # list objects in the bucket
+        print("\n3. Listing objects in the S3 bucket:")
+        objs = s3_manager.list_objects(prefix='BRONZE/')
+        print(objs)
 
         print("\n" + "=" * 50)
         print("PIPELINE COMPLETED SUCCESSFULLY!")
@@ -44,7 +52,7 @@ def main():
         return True
 
     except Exception as e:
-        print(f"\n❌ Pipeline failed: {e}")
+        print(f"\nPipeline failed: {e}")
         return False
 
 
