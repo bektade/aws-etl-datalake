@@ -1,4 +1,4 @@
-## AWS ETL project (Medallion Architecture)
+## AWS Datalake (ETL Medallion Architecture)
 
 Programmatic ETL (Extract, Transform, Load) based on crime incidents in Chicago.
 
@@ -22,23 +22,7 @@ Programmatic ETL (Extract, Transform, Load) based on crime incidents in Chicago.
 - **Columns**: 22
 - **Data Source**: [Chicago Data Portal](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data)
 
-## 🛠️ Tech Stack
-
-- **Python 3.11** - Data ingestion and processing
-- **Pandas** - Data manipulation and analysis
-- **Boto3** - AWS S3 integration
-- **Sodapy** - Chicago API client
-- **Pipenv** - Dependency management
-- **AWS S3** - Cloud storage
-- **Jupyter** - Data exploration and analysis
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Python 3.11+
-- AWS Account with S3 access
-- Chicago Data Portal API credentials
+## Quick Start
 
 ### 1. Clone Repo & Environment Setup
 
