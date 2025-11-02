@@ -55,6 +55,8 @@ Updates the `.env` file with your credentials:
     S3_BUCKET_NAME=your-bucket-name
     ```
 
+    get API key & secret by logging [here](https://data.cityofchicago.org/login)
+
 ### 3. Run the Pipeline
 
 ```bash
