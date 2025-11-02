@@ -10,13 +10,10 @@ from tqdm import tqdm
 class Ingestor:
     """Data Ingestor class for handling API data ingestion with DRY principles."""
 
-    def __init__(self):
+    def __init__(self, endpoint=None,
+                 base_url=None):
         """
-        Initialize the Ingestor with API configuration.
-
-        - load contents of .env file (API_KEY_ID & AWS S3 credentials)
-        - intialize variables as per .env content
-
+        Initialize API credentials and endpoint.
         """
         load_dotenv()
 
@@ -24,16 +21,17 @@ class Ingestor:
         self.api_key_id = os.getenv('API_KEY_ID')
         self.api_secret = os.getenv('API_SECRET')
 
-        # API configuration
-        self.base_url = "https://data.cityofchicago.org/resource"
-        self.endpoint = "ijzp-q8t2.json"
-        self.url = f"{self.base_url}/{self.endpoint}"
+        # Build API endpoint URL
+
+        self.url = f"{base_url}/{endpoint}"
         self.headers = {
             "X-Api-Key-Id": self.api_key_id,
             "X-Api-Secret": self.api_secret
         }
-
-        print(f"Ingestor initailaized & API credentials loaded successfully")
+        if endpoint is None or base_url is None:
+            raise ValueError("Endpoint and Base URL must be provided")
+        else:
+            print(f"Ingestor initailaized & API credentials loaded successfully")
 
     def fetchApi(self, columns, pastDays=60):
         """
@@ -139,10 +137,6 @@ class Ingestor:
 
     def saveCSV(self, df, path='RawData/DataSet1', filePrefix='crimes_data'):
         """
-
-        Save Data Locally: RawData/Dataset1
-        Save DataFrame to CSV file with timestamp.
-
         - saves file to specified directory e.g 'RawData/DataSet1'
         - filename includes timestamp to avoid overwriting
         - creates time stamp using current date and time
