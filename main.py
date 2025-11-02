@@ -9,8 +9,9 @@ def main():
         # Step 1: Ingest data from API and save to CSV
         print("\n1. Ingesting data from API...")
 
-        # init IIngestor
-        ingestor = Ingestor()
+        # init Ingestor with crime end point
+        ingestor = Ingestor(endpoint='ijzp-q8t2.json',
+                            base_url="https://data.cityofchicago.org/resource")
 
         # fetch from api gets a df
         df_ = ingestor.fetchApi(pastDays=10, columns=None)
@@ -18,7 +19,7 @@ def main():
         # save file locally
 
         csvPath = ingestor.saveCSV(
-            df_, path='new', filePrefix='oct')
+            df_, path='RawBronze/DataSet1', filePrefix='oct')
 
         # Step 2: Upload to S3
         print("\n2. Uploading to S3...")
