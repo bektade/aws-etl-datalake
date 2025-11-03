@@ -11,7 +11,11 @@ Programmatic ETL (Extract, Transform, Load) based on crime incidents in Chicago.
 - Silver : “some transformations”
 - Gold : primed for consumption (Analysis in PowerBI)
 
-  ![alt text](src\im\arc.png)
+  <!-- ![alt text](src\im\arc.png) -->
+
+    <p align="center">
+    <img src="src/im/arc.png" alt="System Architecture" width="600">
+     </p>
 
 ## 📊 Data Source
 
