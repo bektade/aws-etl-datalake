@@ -3,13 +3,11 @@
 Programmatic ETL (Extract, Transform, Load) based on crime incidents in Chicago.
 
 - Programmatic data ingestion from Data.gov API
-- pogrammatic AWS S3 bucket creation, file object uploads, object mamangement
+- pogrammatic AWS S3 storage management (bucket creation, file uploads, object tracking, etc.)
 
 ### Medallion Architecture
 
-- Bronze : initial landing & raw data
-- Silver : “some transformations”
-- Gold : primed for consumption (Analysis in PowerBI)
+- `Bronze` : initial landing `Silver` : some transformations & `Gold` : primed for consumption (Analysis in PowerBI).
 
   <!-- ![alt text](src\im\arc.png) -->
 
