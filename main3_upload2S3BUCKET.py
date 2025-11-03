@@ -1,5 +1,5 @@
 from src.Ingestor import Ingestor
-from src.s3_manager import S3Manager
+from s3_manager import S3Bucket
 import os
 
 
@@ -10,7 +10,7 @@ def main3():
         print("\n2. Uploading to S3...")
 
         # create s3 object & initalize
-        s3_manager = S3Manager()
+        s3_manager = S3Bucket()
 
         # create s3 bucket if it doesn't exist
         bucketCreated = s3_manager.create_bucket()

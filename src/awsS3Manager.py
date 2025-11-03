@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from botocore.exceptions import ClientError
 
 
-class S3Manager:
+class S3Bucket:
     """S3 Manager class for handling all S3 operations."""
 
     def __init__(self):
@@ -111,7 +111,7 @@ def upload_latest_csv():
     """Upload the latest CSV file from RawData/DataSet1 to S3."""
     try:
         # Initialize S3 Manager
-        s3_manager = S3Manager()
+        s3_manager = S3Bucket()
 
         # Find the latest CSV file
         local_dir = 'RawData/DataSet1'

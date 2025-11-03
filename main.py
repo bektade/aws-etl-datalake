@@ -1,5 +1,5 @@
 from src.Ingestor import Ingestor
-from src.s3_manager import S3Manager
+from src.awsS3Manager import S3Bucket
 import os
 
 
@@ -25,10 +25,10 @@ def main():
         print("\n2. Uploading to S3...")
 
         # create s3 object & initalize
-        s3_manager = S3Manager()
+        s3buck = S3Bucket()
 
         # create s3 bucket if it doesn't exist
-        bucketCreated = s3_manager.create_bucket()
+        bucketCreated = s3buck.create_bucket()
         print(f"Bucket created: {bucketCreated}")
 
         filename = os.path.basename(csvPath)
@@ -36,15 +36,15 @@ def main():
         # PREFIX/FileName
         s3_key = f"BRONZE/{filename}"
 
-        if s3_manager.upload2Bucket(csvPath, s3_key):
-            print(f"✅ Uploaded to S3: s3://{s3_manager.bucket_name}/{s3_key}")
+        if s3buck.upload2Bucket(csvPath, s3_key):
+            print(f"✅ Uploaded to S3: s3://{s3buck.bucket_name}/{s3_key}")
         else:
             print("❌ Failed to upload to S3")
             return False
 
         # list objects in the bucket
         print("\n3. Listing objects in the S3 bucket:")
-        objs = s3_manager.list_objects(prefix='BRONZE/')
+        objs = s3buck.list_objects(prefix='BRONZE/')
         print(objs)
 
         print("\n" + "=" * 50)
