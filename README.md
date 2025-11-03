@@ -24,7 +24,9 @@ Programmatic ETL (Extract, Transform, Load) based on crime incidents in Chicago.
 - **Columns**: 22
 - **Data Source**: [Chicago Data Portal](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data)
 
-## UML Class Diagram
+### UML Class Diagram
+
+- class diagram for `Ingestor` & `awsS3Manager`
 
 ## Quick Start
 
