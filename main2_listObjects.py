@@ -1,5 +1,5 @@
 from src.Ingestor import Ingestor
-from s3_manager import S3Bucket
+from awsS3Manager import S3Bucket
 import os
 
 
